@@ -1,0 +1,16 @@
+{
+  "name": "aotd",
+  "version": "1.0.0",
+  "description": "Album of the day",
+  "main": "index.html",
+  "scripts": {
+    "collect": "node src/collect.js",
+    "serve": "./node_modules/.bin/http-server src -c-1 -p8085"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "http-server": "^13.0.1"
+  },
+  "author": "Ricky Walker",
+  "license": "ISC"
+}

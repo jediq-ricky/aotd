@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <style>
+
+body {
+  margin:0;
+}
+
+ul {
+  Xwidth:180px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  background:black;
+}
+
+.name,
+.artist {
+  display: none;
+}
+
+img {
+  width: 100%;
+}
+</style>
+  </head>
+  <body>
+    <ul id="list">
+
+    </ul>
+
+    <script>
+(async () => {
+  var response = await fetch('./albums.json');
+  var albums = await response.json();
+  var list = document.getElementById("list");
+  for (album of albums) {
+    var item = document.createElement('li');
+    var inner = `        
+    <span class="artist">${album.artist}</span>
+    <span class="name">${album.name}</span>
+    <span class="artwork">
+      <img src="${artwork(album)}" title="${album.artist} ${album.name}"/>
+    </span>`;
+    item.innerHTML = inner;
+    list.append(item);
+  }
+})();
+
+function artwork(album) {
+  return (
+    "/artwork/" +
+    (album.artist + " " + album.name).replaceAll(" ", "_").replaceAll("?", "") +
+    ".jpg"
+  );
+}
+    </script>
+  </body>
+</html>
